@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 
 export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "success">("idle");
   const ref = useRef<HTMLFormElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
 
@@ -42,9 +43,11 @@ export default function ContactSection() {
     const pickupCity = formData.get("pickupCity") as string;
     const message = formData.get("message") as string;
 
+    setSubmitStatus("submitting");
+
     const whatsappMessage = `Hello CloudNine Tawang! 🙏
 
-I'd like to enquire about a Tawang tour:
+New Tour Enquiry:
 
 Name: ${name}
 Phone: ${phone}
@@ -61,6 +64,15 @@ Please share more details. Thank you!`;
     const whatsappUrl = `https://wa.me/917576002914?text=${encodedMessage}`;
 
     window.open(whatsappUrl, "_blank");
+
+    setTimeout(() => {
+      setSubmitStatus("success");
+      form.reset();
+    }, 1500);
+    
+    setTimeout(() => {
+      setSubmitStatus("idle");
+    }, 6000);
   };
 
   const today = new Date().toISOString().split('T')[0];
@@ -255,9 +267,16 @@ Please share more details. Thank you!`;
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full px-6 py-3 rounded-lg font-semibold transition-all duration-300 bg-accent text-accent-foreground hover:shadow-lg hover:-translate-y-1"
+              disabled={submitStatus !== "idle"}
+              className={`w-full px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                submitStatus === "success" 
+                  ? "bg-green-600 text-white hover:bg-green-700" 
+                  : "bg-accent text-accent-foreground hover:shadow-lg hover:-translate-y-1"
+              } disabled:opacity-80 disabled:cursor-not-allowed`}
             >
-              Send Inquiry
+              {submitStatus === "idle" && "Send Inquiry"}
+              {submitStatus === "submitting" && "Redirecting to WhatsApp..."}
+              {submitStatus === "success" && "Enquiry Sent! Redirected to WhatsApp."}
             </button>
           </form>
         </div>
