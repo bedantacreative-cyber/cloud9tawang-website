@@ -165,9 +165,6 @@ export default function Gallery() {
                       alt={item.caption}
                       loading="lazy"
                       className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.parentElement?.parentElement?.parentElement?.remove();
-                      }}
                     />
                   </div>
                   
