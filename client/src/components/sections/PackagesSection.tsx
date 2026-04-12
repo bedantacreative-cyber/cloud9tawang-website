@@ -47,10 +47,11 @@ export default function PackagesSection() {
     {
       name: "Custom Itinerary Planning",
       duration: "Flexible",
-      price: "From ₹28,000/- pp",
+      price: "Price on Request",
+      desc: "Personalized day-by-day plans tailored to your preferences — Shergaon, Bomdila, Bhalupong, Dirang, Tawang & more. Tell us your dream trip and we'll design it for you.",
       image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663462509682/HyUrhM7eNfTo93fA2Kcd2a/monastery-interior-monks-KXXGk2hbzmDJ7yo8c7SGV8.webp",
       highlights: ["Day-by-day plans", "Shergaon, Bomdila, Bhalupong, Dirang", "Tawang"],
-      route: "Pickup: Guwahati or Itanagar",
+      route: "Pickup: Flexible",
     },
   ];
 
@@ -93,6 +94,10 @@ export default function PackagesSection() {
                   <p className="text-foreground/60 text-sm mb-2">{pkg.duration}</p>
                   <div className="text-lg font-bold text-foreground mt-1">{pkg.price}</div>
                 </div>
+
+                {pkg.desc && (
+                  <p className="text-foreground/80 text-sm mb-4 leading-relaxed">{pkg.desc}</p>
+                )}
 
                 {/* Route */}
                 <div className="flex gap-2 mb-4 text-foreground/70 text-xs">

@@ -248,7 +248,7 @@ Please share more details. Thank you!`;
                 <option value="4N/5D Standard Tour (₹12,500)">4N/5D Standard Tour (₹12,500)</option>
                 <option value="4N/5D Premium Tour (₹14,500)">4N/5D Premium Tour (₹14,500)</option>
                 <option value="Group Tour - 10+ Pax (₹12,000/person)">Group Tour - 10+ Pax (₹12,000/person)</option>
-                <option value="Custom Itinerary (₹28,000)">Custom Itinerary (₹28,000)</option>
+                <option value="Custom Itinerary (Price on Request)">Custom Itinerary (Price on Request)</option>
                 <option value="Not sure — need guidance">Not sure — need guidance</option>
               </select>
             </div>
