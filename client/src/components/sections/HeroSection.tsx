@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link } from "wouter";
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -81,16 +82,20 @@ export default function HeroSection() {
         >
           <a
             href="#packages"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector("#packages")?.scrollIntoView({ behavior: "smooth" });
+            }}
             className="px-8 py-3 bg-accent text-accent-foreground rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
           >
             Explore Packages
           </a>
-          <a
-            href="#gallery"
-            className="px-8 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300"
+          <Link
+            href="/gallery"
+            className="px-8 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300 inline-block text-center"
           >
             View Gallery
-          </a>
+          </Link>
         </div>
       </div>
 
