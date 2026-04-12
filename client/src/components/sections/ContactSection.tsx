@@ -3,16 +3,8 @@ import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 
 export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    travelDate: "",
-    travelers: "",
-    package: "tawang-express",
-    message: "",
-  });
-  const ref = useRef(null);
+  const ref = useRef<HTMLFormElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,36 +16,57 @@ export default function ContactSection() {
       { threshold: 0.2 }
     );
 
-    if (ref.current) observer.observe(ref.current);
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    
+    // Trigger native HTML5 validation
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const formData = new FormData(form);
+
+    const name = formData.get("name") as string;
+    const phone = formData.get("phone") as string;
+    const email = formData.get("email") as string;
+    const travelDate = formData.get("travelDate") as string;
+    const travelers = formData.get("travelers") as string;
+    const packageInterest = formData.get("package") as string;
+    const pickupCity = formData.get("pickupCity") as string;
+    const message = formData.get("message") as string;
+
+    const whatsappMessage = `Hello CloudNine Tawang! 🙏
+
+I'd like to enquire about a Tawang tour:
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Travel Date: ${travelDate}
+Travelers: ${travelers}
+Package: ${packageInterest}
+Pickup City: ${pickupCity}
+Message: ${message || "N/A"}
+
+Please share more details. Thank you!`;
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/917576002914?text=${encodedMessage}`;
+
+    window.open(whatsappUrl, "_blank");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real app, this would send to a backend
-    const message = `New booking inquiry from ${formData.name}. Phone: ${formData.phone}, Email: ${formData.email}`;
-    console.log("Form submitted:", formData);
-    alert("Thank you! We will contact you soon.");
-    setFormData({
-      name: "",
-      phone: "",
-      email: "",
-      travelDate: "",
-      travelers: "",
-      package: "tawang-express",
-      message: "",
-    });
-  };
+  const today = new Date().toISOString().split('T')[0];
 
   return (
-    <section id="contact" ref={ref} className="relative py-20 md:py-32 bg-card/50">
+    <section id="contact" ref={sectionRef} className="relative py-20 md:py-32 bg-card/50">
       <div className="container">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -76,7 +89,7 @@ export default function ContactSection() {
                 <Phone className="text-accent flex-shrink-0 mt-1" size={24} />
                 <div>
                   <h3 className="font-serif font-bold text-foreground mb-1">Phone</h3>
-                  <p className="text-foreground/70">+91 XXXXX XXXXX</p>
+                  <p className="text-foreground/70">+91 7576002914</p>
                 </div>
               </div>
 
@@ -85,7 +98,7 @@ export default function ContactSection() {
                 <Mail className="text-accent flex-shrink-0 mt-1" size={24} />
                 <div>
                   <h3 className="font-serif font-bold text-foreground mb-1">Email</h3>
-                  <p className="text-foreground/70">info@cloud9tawang.com</p>
+                  <p className="text-foreground/70">cloud9tawang@gmail.com</p>
                 </div>
               </div>
 
@@ -100,7 +113,7 @@ export default function ContactSection() {
 
               {/* WhatsApp CTA */}
               <a
-                href="https://wa.me/919876543210?text=Hi%20Cloud9%20Tawang%2C%20I%27m%20interested%20in%20booking%20a%20tour"
+                href="https://wa.me/917576002914?text=Hi!%20I'm%20interested%20in%20a%20Tawang%20tour%20package.%20Please%20share%20details."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-6 py-3 bg-green-600 text-white rounded-full font-semibold hover:bg-green-700 transition-all duration-300 hover:shadow-lg"
@@ -123,17 +136,16 @@ export default function ContactSection() {
 
           {/* Contact Form */}
           <form
+            ref={ref}
             onSubmit={handleSubmit}
-            className={`space-y-4 transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
+            className={`space-y-4 shadow-sm p-6 bg-background/50 rounded-xl border border-border/50 transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
           >
             {/* Name */}
             <div>
-              <label className="block text-foreground font-semibold mb-2">Full Name</label>
+              <label className="block text-foreground font-semibold mb-2">Full Name <span className="text-red-500">*</span></label>
               <input
                 type="text"
                 name="name"
-                value={formData.name}
-                onChange={handleChange}
                 required
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:border-accent focus:outline-none transition-colors duration-300"
                 placeholder="Your name"
@@ -142,26 +154,22 @@ export default function ContactSection() {
 
             {/* Phone */}
             <div>
-              <label className="block text-foreground font-semibold mb-2">Phone Number</label>
+              <label className="block text-foreground font-semibold mb-2">Phone Number <span className="text-red-500">*</span></label>
               <input
                 type="tel"
                 name="phone"
-                value={formData.phone}
-                onChange={handleChange}
                 required
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:border-accent focus:outline-none transition-colors duration-300"
-                placeholder="+91 XXXXX XXXXX"
+                placeholder="+91 7576002914"
               />
             </div>
 
             {/* Email */}
             <div>
-              <label className="block text-foreground font-semibold mb-2">Email Address</label>
+              <label className="block text-foreground font-semibold mb-2">Email Address <span className="text-red-500">*</span></label>
               <input
                 type="email"
                 name="email"
-                value={formData.email}
-                onChange={handleChange}
                 required
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:border-accent focus:outline-none transition-colors duration-300"
                 placeholder="your@email.com"
@@ -170,53 +178,73 @@ export default function ContactSection() {
 
             {/* Travel Date */}
             <div>
-              <label className="block text-foreground font-semibold mb-2">Preferred Travel Date</label>
+              <label className="block text-foreground font-semibold mb-2">Preferred Travel Date <span className="text-red-500">*</span></label>
               <input
                 type="date"
                 name="travelDate"
-                value={formData.travelDate}
-                onChange={handleChange}
+                required
+                min={today}
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:border-accent focus:outline-none transition-colors duration-300"
               />
             </div>
 
-            {/* Number of Travelers */}
-            <div>
-              <label className="block text-foreground font-semibold mb-2">Number of Travelers</label>
-              <input
-                type="number"
-                name="travelers"
-                value={formData.travelers}
-                onChange={handleChange}
-                min="1"
-                className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:border-accent focus:outline-none transition-colors duration-300"
-                placeholder="1"
-              />
+            <div className="grid grid-cols-2 gap-4">
+              {/* Number of Travelers */}
+              <div>
+                <label className="block text-foreground font-semibold mb-2">Travelers <span className="text-red-500">*</span></label>
+                <select
+                  name="travelers"
+                  defaultValue=""
+                  required
+                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:border-accent focus:outline-none transition-colors duration-300"
+                >
+                  <option value="" disabled>Select</option>
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                    <option key={num} value={num}>{num}</option>
+                  ))}
+                  <option value="10+">10+</option>
+                </select>
+              </div>
+
+              {/* Pickup City */}
+              <div>
+                <label className="block text-foreground font-semibold mb-2">Pickup City <span className="text-red-500">*</span></label>
+                <select
+                  name="pickupCity"
+                  defaultValue=""
+                  required
+                  className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:border-accent focus:outline-none transition-colors duration-300"
+                >
+                  <option value="" disabled>Select City</option>
+                  <option value="Guwahati">Guwahati</option>
+                  <option value="Itanagar">Itanagar</option>
+                </select>
+              </div>
             </div>
 
             {/* Package */}
             <div>
-              <label className="block text-foreground font-semibold mb-2">Package Interest</label>
+              <label className="block text-foreground font-semibold mb-2">Package Interest <span className="text-red-500">*</span></label>
               <select
                 name="package"
-                value={formData.package}
-                onChange={handleChange}
+                defaultValue=""
+                required
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:border-accent focus:outline-none transition-colors duration-300"
               >
-                <option value="tawang-express">Tawang Express (5D/4N)</option>
-                <option value="tawang-complete">Tawang Complete (7D/6N)</option>
-                <option value="tawang-beyond">Tawang & Beyond (9D/8N)</option>
-                <option value="custom">Custom Tour</option>
+                <option value="" disabled>Select a package</option>
+                <option value="4N/5D Standard Tour (₹12,500)">4N/5D Standard Tour (₹12,500)</option>
+                <option value="4N/5D Premium Tour (₹14,500)">4N/5D Premium Tour (₹14,500)</option>
+                <option value="Group Tour - 10+ Pax (₹12,000/person)">Group Tour - 10+ Pax (₹12,000/person)</option>
+                <option value="Custom Itinerary (₹28,000)">Custom Itinerary (₹28,000)</option>
+                <option value="Not sure — need guidance">Not sure — need guidance</option>
               </select>
             </div>
 
             {/* Message */}
             <div>
-              <label className="block text-foreground font-semibold mb-2">Message</label>
+              <label className="block text-foreground font-semibold mb-2">Message <span className="text-foreground/50 font-normal">(Optional)</span></label>
               <textarea
                 name="message"
-                value={formData.message}
-                onChange={handleChange}
                 rows={3}
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:border-accent focus:outline-none transition-colors duration-300"
                 placeholder="Tell us about your travel preferences..."
@@ -226,7 +254,7 @@ export default function ContactSection() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="w-full px-6 py-3 rounded-lg font-semibold transition-all duration-300 bg-accent text-accent-foreground hover:shadow-lg hover:-translate-y-1"
             >
               Send Inquiry
             </button>
@@ -236,10 +264,10 @@ export default function ContactSection() {
 
       {/* Floating WhatsApp Button */}
       <a
-        href="https://wa.me/919876543210?text=Hi%20Cloud9%20Tawang%2C%20I%27m%20interested%20in%20booking%20a%20tour"
+        href="https://wa.me/917576002914?text=Hi!%20I'm%20interested%20in%20a%20Tawang%20tour%20package."
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 w-14 h-14 bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-lg transition-all duration-300 hover:scale-110 z-40"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-50 animate-[pulse_2s_ease-in-out_infinite]"
       >
         <MessageCircle size={28} />
       </a>

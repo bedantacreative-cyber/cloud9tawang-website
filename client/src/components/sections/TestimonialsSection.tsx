@@ -22,28 +22,22 @@ export default function TestimonialsSection() {
 
   const testimonials = [
     {
-      name: "Priya Sharma",
-      city: "Delhi",
+      name: "Rimi's Kingdom",
+      city: "Tawang Tourist",
       rating: 5,
-      quote: "Cloud9 Tawang made our spiritual journey unforgettable. Every detail was perfect, from the permits to the homestays. We felt truly cared for.",
+      quote: "Highly recommend Tawang holiday tours and expeditions, they are not just a agency but the owner will give you familiar vibes. This tour agency's owner will take care of you so well, you won't even feel like you're away from home. I've spoken to many travel agencies, but this one genuinely cares and takes responsibility for making your trip memorable. I found this agency on Instagram and am really happy to have booked my trip with them.",
     },
     {
-      name: "Rajesh Kumar",
-      city: "Bangalore",
+      name: "Semy's Family",
+      city: "Tawang Tourist",
       rating: 5,
-      quote: "The Bumla Pass trek was the highlight of our lives. The team's expertise and warmth made us feel safe and welcomed in this sacred land.",
+      quote: "Thank you all for being the best tour guide and glad to have found a friend in you all. Wish your team the best and see you all soon. Lots of love — The Semy's Family.",
     },
     {
-      name: "Anjali Patel",
-      city: "Mumbai",
+      name: "Nokmaok",
+      city: "Tawang Tourist",
       rating: 5,
-      quote: "I came alone and left with a family. Cloud9 Tawang's local guides shared stories and wisdom that changed my perspective on life.",
-    },
-    {
-      name: "Marco Rossi",
-      city: "Italy",
-      rating: 5,
-      quote: "As a photographer, I was blown away by the locations and the team's patience. Every sunrise and sunset was pure magic.",
+      quote: "One of the best travel agency from communication to lodging, fooding, driver people and everything. Hope to visit again and again.",
     },
   ];
 

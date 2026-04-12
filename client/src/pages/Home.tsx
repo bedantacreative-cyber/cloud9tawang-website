@@ -6,7 +6,6 @@ import AboutSection from "@/components/sections/AboutSection";
 import PackagesSection from "@/components/sections/PackagesSection";
 import ItinerarySection from "@/components/sections/ItinerarySection";
 import InclusionsSection from "@/components/sections/InclusionsSection";
-import GallerySection from "@/components/sections/GallerySection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import WhyChooseSection from "@/components/sections/WhyChooseSection";
 import BestTimeSection from "@/components/sections/BestTimeSection";
@@ -18,9 +17,24 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading time for aesthetic effect
+    // Only show loading screen once per session to avoid annoying UX
+    const hasLoaded = sessionStorage.getItem("cloudnine_loaded");
+    if (hasLoaded) {
+      setIsLoading(false);
+      setTimeout(() => {
+        if (window.location.hash) {
+          document.querySelector(window.location.hash)?.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      return;
+    }
+
     const timer = setTimeout(() => {
       setIsLoading(false);
+      sessionStorage.setItem("cloudnine_loaded", "true");
+      if (window.location.hash) {
+        document.querySelector(window.location.hash)?.scrollIntoView({ behavior: 'smooth' });
+      }
     }, 2500);
 
     return () => clearTimeout(timer);
@@ -38,7 +52,6 @@ export default function Home() {
       <PackagesSection />
       <ItinerarySection />
       <InclusionsSection />
-      <GallerySection />
       <TestimonialsSection />
       <WhyChooseSection />
       <BestTimeSection />

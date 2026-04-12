@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,13 +16,27 @@ export default function Navigation() {
   }, []);
 
   const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "Packages", href: "#packages" },
-    { label: "Itinerary", href: "#itinerary" },
-    { label: "Gallery", href: "#gallery" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/#home" },
+    { label: "Packages", href: "/#packages" },
+    { label: "Itinerary", href: "/#itinerary" },
+    { label: "Gallery", href: "/gallery", isRoute: true },
+    { label: "About", href: "/#about" },
+    { label: "Contact", href: "/#contact" },
   ];
+
+  const handleNavClick = (e: React.MouseEvent, href: string, isRoute?: boolean) => {
+    setIsMobileMenuOpen(false);
+    if (!isRoute && href.startsWith("/#")) {
+      const hash = href.replace("/", "");
+      const isHomePage = window.location.pathname === "/";
+      
+      if (isHomePage) {
+        e.preventDefault();
+        window.history.pushState(null, "", href);
+        document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <>
@@ -35,22 +50,38 @@ export default function Navigation() {
       >
         <div className="container flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="text-2xl font-serif font-bold text-accent">
-              Cloud9 Tawang
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+              <div className="text-2xl font-serif font-bold text-accent">
+                CloudNine Tawang
+              </div>
             </div>
+            <span className="text-xs text-accent/80 font-medium italic tracking-wide ml-1 -mt-1">
+              "Vocal for Local"
+            </span>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-foreground hover:text-accent transition-colors duration-300 font-medium"
-              >
-                {link.label}
-              </a>
+              link.isRoute ? (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-foreground hover:text-accent transition-colors duration-300 font-medium"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href, link.isRoute)}
+                  className="text-foreground hover:text-accent transition-colors duration-300 font-medium cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              )
             ))}
           </div>
 
@@ -78,15 +109,27 @@ export default function Navigation() {
           <div className="md:hidden bg-background/95 backdrop-blur-md border-t border-border">
             <div className="container py-4 flex flex-col gap-4">
               {navLinks.map((link, index) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-foreground hover:text-accent transition-colors duration-300 font-medium py-2 animate-fade-in-up"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
+                link.isRoute ? (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-foreground hover:text-accent transition-colors duration-300 font-medium py-2 animate-fade-in-up"
+                    style={{ animationDelay: `${index * 50}ms` }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href, link.isRoute)}
+                    className="text-foreground hover:text-accent transition-colors duration-300 font-medium py-2 animate-fade-in-up cursor-pointer"
+                    style={{ animationDelay: `${index * 50}ms` }}
+                  >
+                    {link.label}
+                  </a>
+                )
               ))}
               <a
                 href="#contact"

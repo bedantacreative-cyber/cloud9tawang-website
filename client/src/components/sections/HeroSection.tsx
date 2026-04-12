@@ -70,7 +70,7 @@ export default function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          Experience the spiritual heart of Arunachal Pradesh — Tawang awaits
+          Travel. Experience. Remember.
         </p>
 
         {/* CTA Buttons */}

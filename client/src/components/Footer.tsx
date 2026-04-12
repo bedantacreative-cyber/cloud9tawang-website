@@ -18,8 +18,9 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-serif font-bold text-accent mb-2">Cloud9 Tawang</h3>
-            <p className="text-foreground/60 text-sm">Where the mountains meet the divine</p>
+            <h3 className="text-2xl font-serif font-bold text-accent mb-2">CloudNine Tawang</h3>
+            <p className="text-foreground/60 text-sm italic font-medium mb-1">"Vocal for Local"</p>
+            <p className="text-foreground/60 text-sm">Travel. Experience. Remember.</p>
           </div>
 
           {/* Quick Links */}
@@ -36,30 +37,44 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h4 className="font-serif font-bold text-foreground mb-4">Contact</h4>
-            <ul className="space-y-2 text-foreground/70 text-sm">
+            <ul className="space-y-2 text-foreground/70 text-sm mb-4">
               <li className="flex items-center gap-2">
                 <Phone size={16} className="text-accent" />
-                <span>+91 XXXXX XXXXX</span>
+                <span>+91 7576002914</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={16} className="text-accent" />
-                <span>info@cloud9tawang.com</span>
+                <span>cloud9tawang@gmail.com</span>
               </li>
             </ul>
+            <p className="text-foreground/70 text-xs italic font-medium">Pickup available from Guwahati & Itanagar</p>
           </div>
 
           {/* Social Links */}
           <div>
             <h4 className="font-serif font-bold text-foreground mb-4">Follow Us</h4>
-            <a
-              href="https://www.instagram.com/cloudnine_tawang/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-foreground/70 hover:text-accent transition-colors"
-            >
-              <Instagram size={20} />
-              <span>Instagram</span>
-            </a>
+            <div className="flex flex-col gap-3 text-sm">
+              <a
+                href="https://www.instagram.com/cloudnine_tawang/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-foreground/70 hover:text-accent transition-colors"
+              >
+                <Instagram size={18} />
+                <span>@cloudnine_tawang</span>
+              </a>
+              <a
+                href="https://wa.me/917576002914?text=Hi!%20I'm%20interested%20in%20a%20Tawang%20tour%20package.%20Please%20share%20details."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-foreground/70 hover:text-accent transition-colors"
+              >
+                <div className="w-[18px] h-[18px] flex items-center justify-center bg-green-500 rounded-full text-white">
+                  <Phone size={12} fill="currentColor" />
+                </div>
+                <span>WhatsApp</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -67,8 +82,7 @@ export default function Footer() {
         <div className="border-t border-border pt-8">
           {/* Copyright */}
           <div className="text-center text-foreground/60 text-sm">
-            <p>Made with love in Arunachal Pradesh</p>
-            <p className="mt-2">© {currentYear} Cloud9 Tawang. All rights reserved.</p>
+            <p className="mt-2">© 2025 CloudNine Tawang. All rights reserved.</p>
           </div>
         </div>
       </div>

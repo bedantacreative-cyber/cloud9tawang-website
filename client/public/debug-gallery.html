@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head><style>img { max-width: 300px; height: auto; } .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }</style></head>
+<body>
+  <div class="grid" id="grid"></div>
+  <script>
+    const files = [
+      "IMG_5492.HEIC.jpeg", "IMG_6214.HEIC.jpeg", "IMG_6264.HEIC.jpeg", "IMG_6271.HEIC.jpeg", 
+      "IMG_6285.HEIC.jpeg", "IMG_6288.HEIC.jpeg", "IMG_6552.HEIC.jpeg", "IMG_6674.HEIC.jpeg", 
+      "IMG_6830.HEIC.jpeg", "IMG_6867.HEIC.jpeg", "IMG_6873.HEIC.jpeg", "IMG_7073.JPG.jpeg.jpeg", 
+      "IMG_7074.JPG.jpeg.jpeg", "IMG_7081.JPG.jpeg.jpeg", "IMG_7161.JPG.jpeg.jpeg", "IMG_7571.HEIC.jpeg", 
+      "IMG_7638.HEIC.jpeg", "IMG_7656.HEIC.jpeg", "IMG_7704.HEIC.jpeg", "IMG_7738.HEIC.jpeg", 
+      "IMG_7852.HEIC.jpeg", "IMG_8010.HEIC.jpeg", "IMG_8132.JPG.jpeg.jpeg", "IMG_8133.JPG.jpeg.jpeg", 
+      "IMG_8157.HEIC.jpeg"
+    ];
+    const grid = document.getElementById('grid');
+    files.forEach(file => {
+      grid.innerHTML += `<div><img src="/gallery/${file}" /><h3>${file}</h3></div>`;
+    });
+  </script>
+</body>
+</html>
