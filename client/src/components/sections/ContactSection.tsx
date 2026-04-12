@@ -36,7 +36,7 @@ export default function ContactSection() {
     const name = formData.get("name") as string;
     const phone = formData.get("phone") as string;
     const email = formData.get("email") as string;
-    const travelDate = formData.get("travelDate") as string;
+    const travelDate = formData.get("travel_date") as string;
     const travelers = formData.get("travelers") as string;
     const packageInterest = formData.get("package") as string;
     const pickupCity = formData.get("pickupCity") as string;
@@ -179,11 +179,12 @@ Please share more details. Thank you!`;
             {/* Travel Date */}
             <div>
               <label className="block text-foreground font-semibold mb-2">Preferred Travel Date <span className="text-red-500">*</span></label>
-              <input
-                type="date"
-                name="travelDate"
-                required
+              <input 
+                type="date" 
+                name="travel_date" 
+                required 
                 min={today}
+                style={{ colorScheme: 'dark' }}
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:border-accent focus:outline-none transition-colors duration-300"
               />
             </div>
