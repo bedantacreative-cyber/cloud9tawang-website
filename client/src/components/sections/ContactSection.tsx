@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 
 export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const ref = useRef<HTMLFormElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
 
@@ -45,34 +45,28 @@ export default function ContactSection() {
 
     setSubmitStatus("submitting");
 
-    const whatsappMessage = `Hello CloudNine Tawang! 🙏
-
-New Tour Enquiry:
-
-Name: ${name}
-Phone: ${phone}
-Email: ${email}
-Travel Date: ${travelDate}
-Travelers: ${travelers}
-Package: ${packageInterest}
-Pickup City: ${pickupCity}
-Message: ${message || "N/A"}
-
-Please share more details. Thank you!`;
-
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappUrl = `https://wa.me/917576002914?text=${encodedMessage}`;
-
-    window.open(whatsappUrl, "_blank");
-
-    setTimeout(() => {
-      setSubmitStatus("success");
-      form.reset();
-    }, 1500);
-    
-    setTimeout(() => {
-      setSubmitStatus("idle");
-    }, 6000);
+    // @ts-ignore
+    emailjs.send("service_u2jxaq5", "template_7pvvdkl", {
+      from_name: name,
+      phone: phone,
+      email: email,
+      travel_date: travelDate,
+      travelers: travelers,
+      package_interest: packageInterest,
+      pickup_city: pickupCity,
+      message: message
+    }).then(
+      () => {
+        setSubmitStatus("success");
+        form.reset();
+        setTimeout(() => setSubmitStatus("idle"), 6000);
+      },
+      (error: any) => {
+        console.error("FAILED...", error);
+        setSubmitStatus("error");
+        setTimeout(() => setSubmitStatus("idle"), 6000);
+      }
+    );
   };
 
   const today = new Date().toISOString().split('T')[0];
@@ -271,13 +265,26 @@ Please share more details. Thank you!`;
               className={`w-full px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
                 submitStatus === "success" 
                   ? "bg-green-600 text-white hover:bg-green-700" 
+                  : submitStatus === "error"
+                  ? "bg-red-600 text-white"
                   : "bg-accent text-accent-foreground hover:shadow-lg hover:-translate-y-1"
               } disabled:opacity-80 disabled:cursor-not-allowed`}
             >
-              {submitStatus === "idle" && "Send Inquiry"}
-              {submitStatus === "submitting" && "Redirecting to WhatsApp..."}
-              {submitStatus === "success" && "Enquiry Sent! Redirected to WhatsApp."}
+              {submitStatus === "idle" && "Send Enquiry"}
+              {submitStatus === "submitting" && "Sending..."}
+              {submitStatus === "success" && "Enquiry Sent!"}
+              {submitStatus === "error" && "Error Sending"}
             </button>
+            {submitStatus === "success" && (
+              <p className="text-green-500 font-medium text-center mt-4">
+                Thank you! Your enquiry has been sent successfully. Our team will contact you within 24 hours.
+              </p>
+            )}
+            {submitStatus === "error" && (
+              <p className="text-red-500 font-medium text-center mt-4">
+                Something went wrong. Please call us at +91 7576002914 or message us on WhatsApp.
+              </p>
+            )}
           </form>
         </div>
       </div>
