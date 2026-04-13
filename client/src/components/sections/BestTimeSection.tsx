@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Cloud, Sun, CloudRain } from "lucide-react";
+import { Cloud, Sun, Leaf } from "lucide-react";
 
 export default function BestTimeSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -24,22 +24,22 @@ export default function BestTimeSection() {
       icon: Cloud,
       months: "Oct–Feb",
       title: "Winter",
-      description: "Snow, cold, stunning views. Some roads may close. Magical but challenging.",
+      description: "Snow-covered peaks, crystal clear skies, and magical frozen lakes. Experience Tawang at its most breathtaking. Ideal for snow lovers and adventure seekers.",
       color: "from-blue-500 to-cyan-400",
     },
     {
       icon: Sun,
       months: "Mar–Jun",
-      title: "Best Season",
-      description: "Pleasant weather, clear skies, flowers blooming. Perfect for all travelers.",
+      title: "Spring/Summer",
+      description: "Pleasant weather, clear mountain views, and blooming rhododendrons. The most popular season to explore Tawang. Perfect for families and first-time visitors.",
       color: "from-yellow-500 to-orange-400",
       featured: true,
     },
     {
-      icon: CloudRain,
+      icon: Leaf,
       months: "Jul–Sep",
       title: "Monsoon",
-      description: "Heavy rain, landslide risk. Not recommended for travel.",
+      description: "Lush green valleys come alive with wildflowers in bloom. Misty mountains, fewer crowds, and the most vibrant landscapes of the year. Perfect for nature lovers and photography enthusiasts.",
       color: "from-gray-500 to-slate-400",
     },
   ];
