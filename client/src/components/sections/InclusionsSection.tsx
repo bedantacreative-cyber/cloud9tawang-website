@@ -20,8 +20,8 @@ export default function InclusionsSection() {
   }, []);
 
   const inclusions = [
-    { icon: Car, title: "Guwahati Pickup & Drop", description: "Airport/Station pickup and drop" },
-    { icon: Hotel, title: "Hotel / Homestay", description: "Comfortable accommodation" },
+    { icon: Car, title: "Guwahati & Itanagar Pickup & Drop", description: "Airport/Station pickup and drop from both cities" },
+    { icon: Hotel, title: "Hotel / Homestay / Hostel / Resort", description: "Comfortable accommodation options for every budget" },
     { icon: FileText, title: "Inner Line Permit", description: "ILP arrangement included" },
     { icon: Users, title: "Dedicated Vehicle", description: "With experienced hill driver" },
     { icon: Utensils, title: "Breakfast & Meals", description: "Select packages include all meals" },
