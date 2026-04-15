@@ -33,7 +33,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" ref={ref} className="relative py-20 md:py-32 bg-background">
+    <section id="about" ref={ref} className="relative py-12 md:py-32 bg-background">
       <div className="container">
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           {/* Left: Text Content */}

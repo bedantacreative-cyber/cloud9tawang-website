@@ -62,7 +62,7 @@ export default function CBTSection() {
   ];
 
   return (
-    <section id="cbt" ref={ref} className="relative py-20 md:py-32 overflow-hidden" style={{ background: "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(20 15% 8%) 50%, hsl(var(--background)) 100%)" }}>
+    <section id="cbt" ref={ref} className="relative py-12 md:py-32 overflow-hidden" style={{ background: "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(20 15% 8%) 50%, hsl(var(--background)) 100%)" }}>
       {/* Decorative ambient glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-[0.07]" style={{ background: "radial-gradient(circle, hsl(var(--accent)), transparent 70%)" }}></div>
 

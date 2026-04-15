@@ -48,7 +48,7 @@ export default function GallerySection() {
   ];
 
   return (
-    <section id="gallery" ref={ref} className="relative py-20 md:py-32 bg-background">
+    <section id="gallery" ref={ref} className="relative py-12 md:py-32 bg-background">
       <div className="container">
         {/* Section Header */}
         <div className="text-center mb-16">

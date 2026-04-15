@@ -56,7 +56,7 @@ export default function BestTimeSection() {
   ];
 
   return (
-    <section id="best-time" ref={ref} className="relative py-20 md:py-32 bg-card/50">
+    <section id="best-time" ref={ref} className="relative py-12 md:py-32 bg-card/50">
       <div className="container">
         {/* Section Header */}
         <div className="text-center mb-16">

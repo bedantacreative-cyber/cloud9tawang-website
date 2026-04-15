@@ -72,7 +72,7 @@ export default function ContactSection() {
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <section id="contact" ref={sectionRef} className="relative py-20 md:py-32 bg-card/50">
+    <section id="contact" ref={sectionRef} className="relative py-12 md:py-32 bg-card/50">
       <div className="container">
         {/* Section Header */}
         <div className="text-center mb-16">

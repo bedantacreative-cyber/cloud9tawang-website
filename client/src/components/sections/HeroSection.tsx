@@ -12,7 +12,7 @@ export default function HeroSection() {
   const prayerFlagColors = ["#C0392B", "#2980B9", "#27AE60", "#F4D03F", "#F5F5F0"];
 
   return (
-    <section id="home" className="relative w-full h-screen overflow-hidden pt-20">
+    <section id="home" className="relative w-full min-h-[100svh] overflow-hidden pt-16 md:pt-20">
       {/* Background Image with Ken Burns Zoom */}
       <div
         className="absolute inset-0 bg-cover bg-center animate-ken-burns"
@@ -26,7 +26,7 @@ export default function HeroSection() {
       </div>
 
       {/* Animated Prayer Flags */}
-      <div className="absolute top-32 left-0 right-0 z-10 h-16">
+      <div className="absolute top-20 md:top-32 left-0 right-0 z-10 h-16">
         <svg
           className="w-full h-full"
           viewBox="0 0 1200 60"
@@ -55,7 +55,7 @@ export default function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-4">
+      <div className="relative z-20 min-h-[100svh] flex flex-col items-center justify-center text-center px-4 pb-16">
         {/* Main Headline */}
         <h1
           className={`text-5xl md:text-7xl font-serif font-bold text-white mb-4 transition-all duration-1000 ${

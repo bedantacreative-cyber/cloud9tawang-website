@@ -50,7 +50,7 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section id="testimonials" ref={ref} className="relative py-20 md:py-32 bg-card/50">
+    <section id="testimonials" ref={ref} className="relative py-12 md:py-32 bg-card/50">
       <div className="container">
         {/* Section Header */}
         <div className="text-center mb-16">
