@@ -95,18 +95,6 @@ export default function CBTSection() {
           </p>
         </div>
 
-        {/* Destination Badge */}
-        <div
-          className={`flex justify-center my-10 transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-        >
-          <div className="inline-flex items-center gap-3 bg-accent/10 border border-accent/25 backdrop-blur-sm rounded-full px-6 py-3">
-            <span className="text-2xl">📍</span>
-            <div>
-              <p className="text-accent font-serif font-bold text-lg">Khamba / Grelling (CBT Village)</p>
-              <p className="text-foreground/50 text-xs tracking-wide">Our Community-Based Tourism Village</p>
-            </div>
-          </div>
-        </div>
 
         {/* Activities Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
