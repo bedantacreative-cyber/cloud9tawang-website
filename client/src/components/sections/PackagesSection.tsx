@@ -129,27 +129,6 @@ export default function PackagesSection() {
           ))}
         </div>
 
-        {/* New Destinations CTA */}
-        <div className={`mt-16 overflow-hidden rounded-xl bg-accent text-accent-foreground relative transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="p-8 md:p-12 relative z-10 text-center flex flex-col items-center">
-            <span className="bg-white/20 px-3 py-1 font-semibold rounded-full text-xs tracking-wider mb-4 uppercase">Expanding Horizons</span>
-            <h3 className="text-3xl md:text-4xl font-serif font-bold mb-4">Our New Destinations</h3>
-            <p className="max-w-2xl text-accent-foreground/90 leading-relaxed mb-6 italic">
-              "With the growing love from our customers and the need to expand our incredible travel journey, let's create beautiful moments together in these stunning places:"
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <span className="bg-white/10 px-4 py-2 rounded-lg font-semibold whitespace-nowrap">Khamba / Grelling (Community-Based Tourism — CBT)</span>
-              <span className="bg-white/10 px-4 py-2 rounded-lg font-semibold whitespace-nowrap">Gongkhar La</span>
-            </div>
-            <a
-              href="#contact"
-              className="px-8 py-3 bg-white text-accent rounded-full font-bold hover:shadow-lg transition-all duration-300 inline-block hover:-translate-y-1"
-            >
-              Explore New Routes
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );

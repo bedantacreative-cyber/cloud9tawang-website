@@ -4,6 +4,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
 import PackagesSection from "@/components/sections/PackagesSection";
+import CBTSection from "@/components/sections/CBTSection";
 import ItinerarySection from "@/components/sections/ItinerarySection";
 import InclusionsSection from "@/components/sections/InclusionsSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
@@ -50,6 +51,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <PackagesSection />
+      <CBTSection />
       <ItinerarySection />
       <InclusionsSection />
       <TestimonialsSection />
