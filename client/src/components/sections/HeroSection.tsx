@@ -55,7 +55,7 @@ export default function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 min-h-[100svh] flex flex-col items-center justify-center text-center px-4 pb-16">
+      <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-4 pb-16" style={{ minHeight: "calc(100svh - 4rem)" }}>
         {/* Main Headline */}
         <h1
           className={`text-5xl md:text-7xl font-serif font-bold text-white mb-4 transition-all duration-1000 ${
