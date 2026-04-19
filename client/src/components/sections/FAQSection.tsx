@@ -13,7 +13,7 @@ export default function FAQSection() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.05 }
     );
 
     if (ref.current) observer.observe(ref.current);

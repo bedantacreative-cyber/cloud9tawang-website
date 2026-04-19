@@ -11,7 +11,7 @@ export default function CBTSection() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.05 }
     );
 
     if (ref.current) observer.observe(ref.current);

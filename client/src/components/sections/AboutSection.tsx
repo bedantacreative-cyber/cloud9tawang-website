@@ -11,7 +11,7 @@ export default function AboutSection() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.05 }
     );
 
     if (ref.current) observer.observe(ref.current);
@@ -35,7 +35,7 @@ export default function AboutSection() {
   return (
     <section id="about" ref={ref} className="relative py-12 md:py-32 bg-background">
       <div className="container">
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
           {/* Left: Text Content */}
           <div
             className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
@@ -72,7 +72,7 @@ export default function AboutSection() {
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663462509682/HyUrhM7eNfTo93fA2Kcd2a/monastery-interior-monks-KXXGk2hbzmDJ7yo8c7SGV8.webp"
               alt="Monastery Interior"
-              className="rounded-lg shadow-soft w-full h-auto min-h-96 object-cover mb-4"
+              className="rounded-lg shadow-soft w-full h-auto min-h-[250px] max-h-[300px] md:min-h-96 md:max-h-none object-cover mb-4"
             />
             <div className="bg-card p-5 rounded-lg shadow-soft border border-border">
               <h3 className="text-xl font-bold font-serif text-accent mb-3">Our History</h3>
