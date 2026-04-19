@@ -59,6 +59,20 @@ export default function ContactSection() {
       () => {
         setSubmitStatus("success");
         form.reset();
+
+        const whatsappMessage = `Hi CloudNine Tawang! I just submitted an enquiry. Here are my details:
+*Name:* ${name}
+*Phone:* ${phone}
+*Email:* ${email}
+*Travel Date:* ${travelDate}
+*Travelers:* ${travelers}
+*Pickup City:* ${pickupCity}
+*Package:* ${packageInterest}
+${message ? `*Message:* ${message}` : ""}`;
+
+        // Open WhatsApp with pre-filled message
+        window.open(`https://wa.me/917576002914?text=${encodeURIComponent(whatsappMessage)}`, "_blank");
+
         setTimeout(() => setSubmitStatus("idle"), 6000);
       },
       (error: any) => {
