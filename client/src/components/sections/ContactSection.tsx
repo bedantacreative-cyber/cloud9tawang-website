@@ -46,7 +46,7 @@ export default function ContactSection() {
     setSubmitStatus("submitting");
 
     // @ts-ignore
-    emailjs.send("service_u2jxaq5", "template_7pvvdkl", {
+    emailjs.send("service_hj09dp7", "template_8f8ub89", {
       from_name: name,
       phone: phone,
       email: email,
